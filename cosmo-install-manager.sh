@@ -19,6 +19,10 @@ git clone https://github.com/CloudifySource/cosmo-manager.git
 # bootstrap this machine as a management machine
 python2.7 cosmo-manager/vagrant/bootstrap_lxc_manager.py --working_dir=$WORKINGDIR --cosmo_version=$VERSION --config_dir=$CONFIGDIR --install_openstack_provisioner=True
 
+if [ $? -ne 0 ]; then
+    exit $?
+fi
+
 if [ "$DEV_MODE" ]; then
     mvn clean package -DskipTests -Pall -f cosmo-manager/orchestrator/pom.xml
     rm cosmo.jar
