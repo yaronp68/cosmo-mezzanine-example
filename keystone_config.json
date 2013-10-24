@@ -1,0 +1,6 @@
+{
+    "username": "ENTER_USERNAME",
+    "password": "ENTER_KEY",
+    "auth_url": "ENTER_AUTH_URL",
+    "tenant_name": "ENTER_PROJECT_ID"
+}
