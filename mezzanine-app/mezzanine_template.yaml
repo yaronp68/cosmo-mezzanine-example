@@ -88,7 +88,7 @@ application_template:
                                 service: 'database status'
                                 state: 'running'
         # mezzanine db schema
-        -   name: 'postgres_server_db'
+        -   name: 'mezanine_db'
             type: 'mezzanine_app_module'
             relationships:
                 -   type: 'cloudify.relationships.contained_in'
@@ -112,7 +112,7 @@ application_template:
                 -   type: 'cloudify.relationships.depends_on'
                     target: 'nginx'
                 -   type: 'cloudify.relationships.connected_to'
-                    target: 'postgres_server_db'
+                    target: 'mezanine_db'
                     plugin: 'chef_connection_configurer'
                     run_on_node: 'source'
             properties:
