@@ -23,6 +23,13 @@ application_template:
                         userdata: |
                             #!/bin/bash -ex
                             grep -q novalocal /etc/hosts || echo "15.185.152.116 chef.novalocal" >> /etc/hosts
+            policies:
+                start_detection_policy:
+                    rules:
+                        -   type: 'state_equals'
+                            properties:
+                                service: 'openstack machine status'
+                                state: 'running'
         # front end nova machine
         -   name: 'postgres_host'
             type: 'mezzanine_host'
@@ -37,6 +44,13 @@ application_template:
                         userdata: |
                             #!/bin/bash -ex
                             grep -q novalocal /etc/hosts || echo "15.185.152.116 chef.novalocal" >> /etc/hosts
+            policies:
+                start_detection_policy:
+                    rules:
+                        -   type: 'state_equals'
+                            properties:
+                                service: 'openstack machine status'
+                                state: 'running'
         # mezzanine static server
         -   name: 'nginx'
             type: 'mezzanine_middleware'
