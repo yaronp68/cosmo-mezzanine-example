@@ -12,7 +12,7 @@ Setup
     * `userhome` is `user`'s home directory
     * `management_key_path` is a path to the ssh key used to connect to the management machine.
 
-1. Place the ssh key that will be used for the client vm instances in the repository root under the name `id_rsa`. (in the `mezzanine` example, this will be the key belonging to the key pair that goes by the name `head`
+1. Place the ssh key that will be used for the client vm instances in the repository root under the name `id_rsa`. (in the `mezzanine` example, this will be the key belonging to the key pair that goes by the name `head`)
 
 1. edit `keystone_config.json` with the appropriate details.
 
