@@ -30,7 +30,7 @@ application_template:
                             properties:
                                 service: 'openstack machine status'
                                 state: 'running'
-        # front end nova machine
+        # db nova machine
         -   name: 'postgres_host'
             type: 'mezzanine_host'
             properties:
@@ -51,7 +51,7 @@ application_template:
                             properties:
                                 service: 'openstack machine status'
                                 state: 'running'
-        # mezzanine static server
+        # mezzanine nginx web server
         -   name: 'nginx'
             type: 'mezzanine_middleware'
             relationships:
@@ -102,7 +102,7 @@ application_template:
                                 service: 'database status'
                                 state: 'running'
         # mezzanine db schema
-        -   name: 'mezanine_db'
+        -   name: 'mezzanine_db'
             type: 'mezzanine_app_module'
             relationships:
                 -   type: 'cloudify.relationships.contained_in'
@@ -117,8 +117,8 @@ application_template:
                             properties:
                                 service: 'database schema status'
                                 state: 'running'
-        # mezanine application
-        -   name: 'mezanine_app'
+        # mezzanine application
+        -   name: 'mezzanine_app'
             type: 'mezzanine_app_module'
             relationships:
                 -   type: 'cloudify.relationships.contained_in'
@@ -126,7 +126,7 @@ application_template:
                 -   type: 'cloudify.relationships.depends_on'
                     target: 'nginx'
                 -   type: 'cloudify.relationships.connected_to'
-                    target: 'mezanine_db'
+                    target: 'mezzanine_db'
                     plugin: 'chef_connection_configurer'
                     run_on_node: 'source'
             properties:
