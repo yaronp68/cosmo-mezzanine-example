@@ -5,7 +5,7 @@ Setup
 --------
 1. Start a new machine instance that will serve as that management machine. Use an Ubuntu 12.04 64bit Server edition image.
 
-1. Clone this repository.
+1. Clone this repository in your local machine (not the management machine).
 ```
 git clone https://github.com/CloudifySource/cosmo-mezzanine-example.git
 cd cosmo-mezzanine-example
