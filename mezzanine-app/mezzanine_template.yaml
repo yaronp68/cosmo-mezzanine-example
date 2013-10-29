@@ -6,7 +6,7 @@ imports:
     - 'plugins/chef_connection_configurer.yaml'
     - 'plugins/chef_middleware_installer.yaml'
 
-application_template:
+blueprint:
     name: 'mezzanine'
     topology:
         # front end nova machine 
@@ -24,7 +24,7 @@ application_template:
                             #!/bin/bash -ex
                             grep -q novalocal /etc/hosts || echo "15.185.152.116 chef.novalocal" >> /etc/hosts
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
@@ -45,7 +45,7 @@ application_template:
                             #!/bin/bash -ex
                             grep -q novalocal /etc/hosts || echo "15.185.152.116 chef.novalocal" >> /etc/hosts
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
@@ -63,7 +63,7 @@ application_template:
                 chef_install_runlist: 'recipe[cosmo-mezzanine-demo::install_web_nginx]'
                 policy_service: 'webserver status'
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
@@ -79,7 +79,7 @@ application_template:
                 chef_install_runlist: 'recipe[cosmo-mezzanine-demo::install_web_gunicorn]'
                 policy_service: 'webserver2 status'
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
@@ -95,7 +95,7 @@ application_template:
                 chef_install_runlist: 'recipe[cosmo-mezzanine-demo::install_db_postgresql]'
                 policy_service: 'database status'
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
@@ -111,7 +111,7 @@ application_template:
                 chef_deploy_runlist: 'recipe[cosmo-mezzanine-demo::install_db_postgresql_db]'
                 policy_service: 'database schema status'
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
@@ -135,7 +135,7 @@ application_template:
                 chef_configure_connection_runlist: 'recipe[cosmo-mezzanine-demo::configure_web_mezzanine_app]'
                 policy_service: 'mezzanine app status'
             policies:
-                start_detection_policy:
+                -   name: 'start_detection_policy'
                     rules:
                         -   type: 'state_equals'
                             properties:
