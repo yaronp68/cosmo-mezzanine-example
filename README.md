@@ -11,20 +11,20 @@ git clone https://github.com/CloudifySource/cosmo-mezzanine-example.git
 cd cosmo-mezzanine-example
 ```
 
-1. edit `env.sh` so that:
+1. edit `cosmo-mezzanine-example/env.sh` so that:
     * `host` is set to the management machine public ip.
     * `workdir` points to the root directory of this repository.
     * `user` is the username to use on the management machine.
     * `userhome` is `user`'s home directory
     * `management_key_path` is a path to the ssh key used to connect to the management machine.
 
-1. Place the ssh key that will be used for the client vm instances in the repository root under the name `id_rsa`. (in the `mezzanine` example, this will be the key belonging to the key pair that goes by the name `head`)
+1. Place the ssh key that will be used for the client vm instances in the `cosmo-mezzanine-example` dir and name it `id_rsa`. (in the `mezzanine` example, this will be the key belonging to the key pair that goes by the name `head`)
 
-1. edit `keystone_config.json` with the appropriate details.
+1. edit `cosmo-mezzanine-example/keystone_config.json` with the appropriate details.
 
-1. edit `mezzanine-app/mezzanine_blueprint.yaml` so that `nova_config` is properly configured (2 places)
+1. edit `cosmo-mezzanine-example/mezzanine-app/mezzanine_blueprint.yaml` so that `nova_config` is properly configured (2 places)
 
-1. edit `mezaanine-app/definitions/mezzanine_types.yaml` so that:
+1. edit `cosmo-mezzanine-example/mezaanine-app/definitions/mezzanine_types.yaml` so that:
     * The chef configuration + key matches your chef server configuration
     * the `user` property under `worker_config` matches the user of the image you picked in `nova_config`
 
