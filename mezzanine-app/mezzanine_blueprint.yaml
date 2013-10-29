@@ -9,7 +9,7 @@ imports:
 blueprint:
     name: 'mezzanine'
     topology:
-        # front end nova machine 
+        # front end nova machine
         -   name: 'webserver_host'
             type: 'mezzanine_host'
             properties:

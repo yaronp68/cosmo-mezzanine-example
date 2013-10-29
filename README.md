@@ -22,7 +22,7 @@ cd cosmo-mezzanine-example
 
 1. edit `keystone_config.json` with the appropriate details.
 
-1. edit `mezzanine-app/mezzanine_template.yaml` so that `nova_config` is properly configured (2 places) 
+1. edit `mezzanine-app/mezzanine_blueprint.yaml` so that `nova_config` is properly configured (2 places)
 
 1. edit `mezaanine-app/definitions/mezzanine_types.yaml` so that:
     * The chef configuration + key matches your chef server configuration
@@ -35,7 +35,7 @@ source env.sh
 ssh -i $management_key_path $user@$host
 ./cosmo-install-manager.sh
 cd cosmo-work
-./cosmo.sh --dsl=$HOME/mezzanine-app/mezzanine_template.yaml
+./cosmo.sh --dsl=$HOME/mezzanine-app/mezzanine_blueprint.yaml
 ```
 
 1. If you wish to cleanup the chef server and terminate the instaces started, update `cleanup-cloud-server.py` with the appropriate details and configure your `.chef/knife.rb` so that `knife` commands work properly from within the repository directory. Then, execute `./cleanup.sh` from your local machine.
