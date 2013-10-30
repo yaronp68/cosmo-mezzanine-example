@@ -1,8 +1,15 @@
 Mezzanine Example
 =======================
 
-Setup
---------
+Chef Server Setup
+-------------------
+In order to run this demo you will need a Chef server up and running with the following recipes and their dependencies installed:
+* `https://github.com/fewbytes-cookbooks/cosmo-mezzanine` - This recipe should be installed with the name `mezzanine`.
+* `https://github.com/fewbytes-cookbooks/cosmo-mezzanine-demo` - This recipe should be installed with the name `cosmo-mezzanine-demo`.
+
+
+Management Setup
+----------------
 1. Start a new machine instance that will serve as that management machine. Use an Ubuntu 12.04 64bit Server edition image.
 
 1. Clone this repository in your local machine (not the management machine).
@@ -34,8 +41,19 @@ source env.sh
 ./copy-files-to-management.sh
 ssh -i $management_key_path $user@$host
 ./cosmo-install-manager.sh
+```
+
+
+Running the demo
+-----------------
+Once you have setup the management machine as described above, execute the following in the ssh session that we started in the previous step.
+```
 cd cosmo-work
 ./cosmo.sh --dsl=$HOME/mezzanine-app/mezzanine_blueprint.yaml
 ```
+If this execution finished successfully you should see something like this:
+`ManagerBoot Application has been successfully deployed (press CTRL+C to quit)`
 
-1. If you wish to cleanup the chef server and terminate the instaces started, update `cleanup-cloud-server.py` with the appropriate details and configure your `.chef/knife.rb` so that `knife` commands work properly from within the repository directory. Then, execute `./cleanup.sh` from your local machine.
+If you wish to cleanup the chef server and terminate the vm instances started, update `cleanup-cloud-server.py` with the appropriate details and configure your `.chef/knife.rb` so that `knife` commands work properly from within the repository directory. Then, execute `./cleanup.sh` from your local machine.
+
+
