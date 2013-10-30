@@ -7,7 +7,7 @@ Fill me up.
 
 Demo Application Structure Description
 --------------------------------------
-The [`mezzanine`](http://mezzanine.jupo.org/) demo application (see `mezzanine-app/mezzanine_blueprint.yaml`) is composed of the following pieces:
+The [`Mezzanine`](http://mezzanine.jupo.org/) demo application (see `mezzanine-app/mezzanine_blueprint.yaml`) is composed of the following pieces:
 * Two nodes represent host machines, one for the web frontend and one for `postgres`.
 * A node for the [`nginx`](http://nginx.org/) server which is `contained_in` the web fronted host.
 * A node for [`gunicorn`](http://gunicorn.org/) which is also `contained_in` the web frontend host.
@@ -34,8 +34,9 @@ In order to run this demo you will need a Chef server up and running with the fo
 Management Setup
 ----------------
 1. Start a new machine instance that will serve as that management machine. Use an Ubuntu 12.04 64bit Server edition image.
-Make sure that the machine is started with a security group such that ports `8080` (For Kibana) and `9200` (For elastic search) are open for `tcp` connections.
-These will be used by `Logstash` that is installed as part of the management installation process.
+Make sure that the machine is started with a security group such that ports `8080` (For [`Kibana`](http://www.elasticsearch.org/overview/kibana/)) 
+and `9200` (For [`Elastic Search`](http://www.elasticsearch.org/) are open for `tcp` connections.
+These will be used by [`logstash`](http://logstash.net/) that is installed as part of the management installation process.
  
 
 1. Clone this repository in your local machine (not the management machine).
@@ -81,7 +82,7 @@ cd cosmo-work
 ./cosmo.sh --dsl=$HOME/mezzanine-app/mezzanine_blueprint.yaml
 ```
 If this execution finished successfully you should see something like this:
-`ManagerBoot Application has been successfully deployed (press CTRL+C to quit)`
+`ManagerBoot Application has been successfully deployed`
 
 You can now fire up your browser and head over to:
 `http://MANAGEMENT_IP:8080` to view all the events using `Kibana`. 
