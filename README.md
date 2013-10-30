@@ -11,6 +11,9 @@ In order to run this demo you will need a Chef server up and running with the fo
 Management Setup
 ----------------
 1. Start a new machine instance that will serve as that management machine. Use an Ubuntu 12.04 64bit Server edition image.
+Make sure that the machine is started with a security group such that ports `8080` (For Kibana) and `9200` (For elastic search) are open for `tcp` connections.
+These will be used by `Logstash` that is installed as part of the management installation process.
+ 
 
 1. Clone this repository in your local machine (not the management machine).
 ```
@@ -27,7 +30,10 @@ cd cosmo-mezzanine-example
 
 1. Place the ssh key that will be used for the client vm instances in the `cosmo-mezzanine-example` dir and name it `id_rsa`. (in the `mezzanine` example, this will be the key belonging to the key pair that goes by the name `head`)
 
-1. edit `cosmo-mezzanine-example/keystone_config.json` with the appropriate details.
+1. edit `cosmo-mezzanine-example/keystone_config.json` as follows:
+    * `username` and `password` should be the password credentials and _not_ the the api access keys as this is what the python novaclient uses.
+    * `auth_url` should be the keystone auth v2.0 url
+    * `tenant_name` - In HP cloud this would be the project id and in Rackspace this would be the account number.
 
 1. edit `cosmo-mezzanine-example/mezzanine-app/mezzanine_blueprint.yaml` so that `nova_config` is properly configured (2 places)
 
@@ -53,6 +59,13 @@ cd cosmo-work
 ```
 If this execution finished successfully you should see something like this:
 `ManagerBoot Application has been successfully deployed (press CTRL+C to quit)`
+
+You can now fire up your browser and head over to:
+`http://MANAGEMENT_IP:8080` to view all the events using `Kibana`. 
+For best viewing experience, it is suggested the the following columns be enabled:
+* @timestamp
+* type
+* description
 
 If you wish to cleanup the chef server and terminate the vm instances started, update `cleanup-cloud-server.py` with the appropriate details and configure your `.chef/knife.rb` so that `knife` commands work properly from within the repository directory. Then, execute `./cleanup.sh` from your local machine.
 
