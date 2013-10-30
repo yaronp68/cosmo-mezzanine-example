@@ -7,7 +7,7 @@ Fill me up.
 
 Demo Application Structure Description
 --------------------------------------
-The [`mezzanine`](http://mezzanine.jupo.org/) demo application (see `mezzanine-app/mezzanine_blueprint.yaml`) is composed of the following pieces:
+The [`Mezzanine`](http://mezzanine.jupo.org/) demo application (see `mezzanine-app/mezzanine_blueprint.yaml`) is composed of the following pieces:
 * Two nodes represent host machines, one for the web frontend and one for `postgres`.
 * A node for the [`nginx`](http://nginx.org/) server which is `contained_in` the web fronted host.
 * A node for [`gunicorn`](http://gunicorn.org/) which is also `contained_in` the web frontend host.
@@ -17,8 +17,8 @@ This node is `contained_in` the `postgres` database node
 * A node for the actual `mezzanine app`. This node is `contained_in` the `gunicorn` node and is `connected_to`
 The `mezzanine db` node.
 
-The two host nodes are provisioned using the python novalclient api. The rest of the nodes are installed and started
-using chef.
+The two host nodes are provisioned using the [`python-novaclient`](https://pypi.python.org/pypi/python-novaclient/) library. The rest of the nodes are installed and started
+using [`Chef`](http://www.opscode.com/chef/).
 
 
 For an in depth the description of the model concepts behind this demo application see [Concepts](concepts.md).
@@ -34,8 +34,9 @@ In order to run this demo you will need a Chef server up and running with the fo
 Management Setup
 ----------------
 1. Start a new machine instance that will serve as that management machine. Use an Ubuntu 12.04 64bit Server edition image.
-Make sure that the machine is started with a security group such that ports `8080` (For Kibana) and `9200` (For elastic search) are open for `tcp` connections.
-These will be used by `Logstash` that is installed as part of the management installation process.
+Make sure that the machine is started with a security group such that ports `8080` (For [`Kibana`](http://www.elasticsearch.org/overview/kibana/)) 
+and `9200` (For [`Elastic Search`](http://www.elasticsearch.org/) are open for `tcp` connections.
+These will be used by [`logstash`](http://logstash.net/) that is installed as part of the management installation process.
  
 
 1. Clone this repository in your local machine (not the management machine).
@@ -72,6 +73,13 @@ ssh -i $management_key_path $user@$host
 ./cosmo-install-manager.sh
 ```
 
+After this step, the management machine will have:
+* [`Celery`](http://www.celeryproject.org/) installed and a worker running to execute its management based tasks.
+* [`RabbitMQ`](http://www.rabbitmq.com/) service running that is used as the backend for `celery`.
+* [`Riemann`](http://riemann.io/) server running that is used for monitoring purposes.
+* A workflow engine
+* [`logstash`](http://logstash.net/) that is configured to read the demo output and write the entries to an embedded 
+`elastic search` instance. On top of that, `kibana` is configured to present the this output on port `8080`.
 
 Running the demo
 -----------------
@@ -81,7 +89,7 @@ cd cosmo-work
 ./cosmo.sh --dsl=$HOME/mezzanine-app/mezzanine_blueprint.yaml
 ```
 If this execution finished successfully you should see something like this:
-`ManagerBoot Application has been successfully deployed (press CTRL+C to quit)`
+`ManagerBoot Application has been successfully deployed`
 
 You can now fire up your browser and head over to:
 `http://MANAGEMENT_IP:8080` to view all the events using `Kibana`. 
