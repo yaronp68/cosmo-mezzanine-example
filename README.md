@@ -17,8 +17,8 @@ This node is `contained_in` the `postgres` database node
 * A node for the actual `mezzanine app`. This node is `contained_in` the `gunicorn` node and is `connected_to`
 The `mezzanine db` node.
 
-The two host nodes are provisioned using the python novalclient api. The rest of the nodes are installed and started
-using chef.
+The two host nodes are provisioned using the [`python-novaclient`](https://pypi.python.org/pypi/python-novaclient/) library. The rest of the nodes are installed and started
+using [`Chef`](http://www.opscode.com/chef/).
 
 
 For an in depth the description of the model concepts behind this demo application see [Concepts](concepts.md).
