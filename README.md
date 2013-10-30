@@ -73,6 +73,13 @@ ssh -i $management_key_path $user@$host
 ./cosmo-install-manager.sh
 ```
 
+After this step, the management machine will have:
+* [`Celery`](http://www.celeryproject.org/) installed and a worker running to execute its management based tasks.
+* [`RabbitMQ`](http://www.rabbitmq.com/) service running that is used as the backend for `celery`.
+* [`Riemann`](http://riemann.io/) server running that is used for monitoring purposes.
+* A workflow engine
+* [`logstash`](http://logstash.net/) that is configured to read the demo output and write the entries to an embedded 
+`elastic search` instance. On top of that, `kibana` is configured to present the this output on port `8080`.
 
 Running the demo
 -----------------
