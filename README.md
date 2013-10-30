@@ -1,6 +1,17 @@
 Mezzanine Example
 =======================
 
+Overview
+---------
+Fill me up.
+
+Demo Application Structure
+--------------------------
+Fill me up.
+
+For an in depth the description of the model concepts behind this demo application see [Concepts](concepts.md).
+
+
 Chef Server Setup
 -------------------
 In order to run this demo you will need a Chef server up and running with the following recipes and their dependencies installed:
