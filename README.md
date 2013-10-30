@@ -100,4 +100,10 @@ For best viewing experience, it is suggested the the following columns be enable
 
 If you wish to cleanup the chef server and terminate the vm instances started, update `cleanup-cloud-server.py` with the appropriate details and configure your `.chef/knife.rb` so that `knife` commands work properly from within the repository directory. Then, execute `./cleanup.sh` from your local machine.
 
+Please note that running `cleanup-cloud-server.py` requires `python-novaclient` to be installed. It can be installed using the following command:
+```
+pip install python-novaclient
+```
+
+
 
